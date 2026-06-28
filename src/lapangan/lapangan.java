@@ -91,6 +91,8 @@ public class lapangan extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButtonEdit2 = new javax.swing.JButton();
+        jButtonHapus3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -193,6 +195,20 @@ public class lapangan extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable1);
 
+        jButtonEdit2.setText("Edit");
+        jButtonEdit2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEdit2ActionPerformed(evt);
+            }
+        });
+
+        jButtonHapus3.setText("Hapus");
+        jButtonHapus3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonHapus3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -210,7 +226,11 @@ public class lapangan extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
-                        .addGap(617, 617, 617)
+                        .addGap(384, 384, 384)
+                        .addComponent(jButtonHapus3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonEdit2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton1))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1040, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(34, Short.MAX_VALUE))
@@ -220,7 +240,10 @@ public class lapangan extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonEdit2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonHapus3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -241,6 +264,207 @@ public class lapangan extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButtonEdit2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEdit2ActionPerformed
+        int selectedRow = jTable1.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Pilih baris lapangan yang ingin diedit.", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String namaLama = (String) tableModel.getValueAt(selectedRow, 1);
+
+        int idLapangan = -1;
+        Connection connId = null;
+        PreparedStatement pstId = null;
+        ResultSet rsId = null;
+        try {
+            connId = koneksi.getConnection();
+            pstId = connId.prepareStatement("SELECT id_lapangan, nama_lapangan, deskripsi, jenis_lapangan, harga_per_jam, status FROM lapangan WHERE nama_lapangan = ?");
+            pstId.setString(1, namaLama);
+            rsId = pstId.executeQuery();
+            if (!rsId.next()) {
+                JOptionPane.showMessageDialog(this, "Data lapangan tidak ditemukan.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            idLapangan = rsId.getInt("id_lapangan");
+            String namaDb   = rsId.getString("nama_lapangan");
+            String deskDb   = rsId.getString("deskripsi");
+            String jenisDb  = rsId.getString("jenis_lapangan");
+            double hargaDb  = rsId.getDouble("harga_per_jam");
+            String statusDb = rsId.getString("status");
+
+            JTextField nameField = new JTextField(namaDb);
+            nameField.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 13));
+
+            JTextArea descArea = new JTextArea(3, 20);
+            descArea.setText(deskDb);
+            descArea.setLineWrap(true);
+            descArea.setWrapStyleWord(true);
+            descArea.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 13));
+            JScrollPane descScroll = new JScrollPane(descArea);
+
+            String[] jenisOptions = {"Futsal", "Badminton", "Basket", "Voli", "Tenis", "Lainnya"};
+            JComboBox<String> typeCombo = new JComboBox<>(jenisOptions);
+            typeCombo.setSelectedItem(jenisDb);
+            typeCombo.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 13));
+
+            JTextField priceField = new JTextField(String.valueOf(hargaDb));
+            priceField.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 13));
+
+            String[] statusOptions = {"Aktif", "Maintenance", "Tidak Aktif"};
+            JComboBox<String> statusCombo = new JComboBox<>(statusOptions);
+            statusCombo.setSelectedItem(statusDb);
+            statusCombo.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 13));
+
+            JPanel formPanel = new JPanel();
+            formPanel.setLayout(new BoxLayout(formPanel, BoxLayout.Y_AXIS));
+            formPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+            formPanel.add(new JLabel("Nama Lapangan:"));
+            formPanel.add(nameField);
+            formPanel.add(Box.createVerticalStrut(8));
+            formPanel.add(new JLabel("Deskripsi:"));
+            formPanel.add(descScroll);
+            formPanel.add(Box.createVerticalStrut(8));
+            formPanel.add(new JLabel("Jenis Lapangan:"));
+            formPanel.add(typeCombo);
+            formPanel.add(Box.createVerticalStrut(8));
+            formPanel.add(new JLabel("Harga Per Jam:"));
+            formPanel.add(priceField);
+            formPanel.add(Box.createVerticalStrut(8));
+            formPanel.add(new JLabel("Status:"));
+            formPanel.add(statusCombo);
+
+            int result = JOptionPane.showConfirmDialog(this, formPanel, "Edit Lapangan",
+                    JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+            if (result != JOptionPane.OK_OPTION) return;
+
+            String nama      = nameField.getText().trim();
+            String deskripsi = descArea.getText().trim();
+            String jenis     = (String) typeCombo.getSelectedItem();
+            String hargaText = priceField.getText().trim();
+            String status    = (String) statusCombo.getSelectedItem();
+
+            if (nama.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Nama lapangan tidak boleh kosong!", "Validasi Error", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            if (hargaText.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Harga per jam tidak boleh kosong!", "Validasi Error", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            double harga;
+            try {
+                harga = Double.parseDouble(hargaText);
+                if (harga <= 0) {
+                    JOptionPane.showMessageDialog(this, "Harga harus lebih dari 0!", "Validasi Error", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Format harga tidak valid! Masukkan angka.", "Validasi Error", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            Connection connUp = null;
+            PreparedStatement pstUp = null;
+            try {
+                connUp = koneksi.getConnection();
+                String sql = "UPDATE lapangan SET nama_lapangan=?, deskripsi=?, jenis_lapangan=?, harga_per_jam=?, status=? WHERE id_lapangan=?";
+                pstUp = connUp.prepareStatement(sql);
+                pstUp.setString(1, nama);
+                pstUp.setString(2, deskripsi);
+                pstUp.setString(3, jenis);
+                pstUp.setDouble(4, harga);
+                pstUp.setString(5, status);
+                pstUp.setInt(6, idLapangan);
+                int rows = pstUp.executeUpdate();
+                if (rows > 0) {
+                    JOptionPane.showMessageDialog(this, "Lapangan berhasil diperbarui!", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+                    loadData("");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Gagal memperbarui lapangan.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+            } finally {
+                try { if (pstUp != null) pstUp.close(); } catch (SQLException e) { /* ignore */ }
+                try { if (connUp != null) connUp.close(); } catch (SQLException e) { /* ignore */ }
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error mengambil data: " + ex.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            try { if (rsId != null) rsId.close(); } catch (SQLException e) { /* ignore */ }
+            try { if (pstId != null) pstId.close(); } catch (SQLException e) { /* ignore */ }
+            try { if (connId != null) connId.close(); } catch (SQLException e) { /* ignore */ }
+        }
+    }//GEN-LAST:event_jButtonEdit2ActionPerformed
+
+    private void jButtonHapus3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHapus3ActionPerformed
+        int selectedRow = jTable1.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Pilih baris lapangan yang ingin dihapus.", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String namaLapangan = (String) tableModel.getValueAt(selectedRow, 1);
+
+        int confirm = JOptionPane.showConfirmDialog(this,
+                "Yakin ingin menghapus lapangan \"" + namaLapangan + "\"?",
+                "Konfirmasi Hapus", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (confirm != JOptionPane.YES_OPTION) return;
+
+        Connection conn = null;
+        PreparedStatement pstId = null;
+        PreparedStatement pstCek = null;
+        PreparedStatement pstDel = null;
+        ResultSet rsId = null;
+        ResultSet rsCek = null;
+        try {
+            conn = koneksi.getConnection();
+
+            pstId = conn.prepareStatement("SELECT id_lapangan FROM lapangan WHERE nama_lapangan = ?");
+            pstId.setString(1, namaLapangan);
+            rsId = pstId.executeQuery();
+            if (!rsId.next()) {
+                JOptionPane.showMessageDialog(this, "Data lapangan tidak ditemukan.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            int idLapangan = rsId.getInt("id_lapangan");
+
+            pstCek = conn.prepareStatement("SELECT COUNT(*) FROM booking WHERE id_lapangan = ?");
+            pstCek.setInt(1, idLapangan);
+            rsCek = pstCek.executeQuery();
+            if (rsCek.next() && rsCek.getInt(1) > 0) {
+                JOptionPane.showMessageDialog(this,
+                        "Lapangan tidak dapat dihapus karena sudah digunakan pada data booking.",
+                        "Tidak Dapat Dihapus", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+
+            pstDel = conn.prepareStatement("DELETE FROM lapangan WHERE id_lapangan = ?");
+            pstDel.setInt(1, idLapangan);
+            int rows = pstDel.executeUpdate();
+            if (rows > 0) {
+                JOptionPane.showMessageDialog(this, "Lapangan berhasil dihapus!", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+                loadData("");
+            } else {
+                JOptionPane.showMessageDialog(this, "Gagal menghapus lapangan.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            try { if (rsId != null) rsId.close(); } catch (SQLException e) { /* ignore */ }
+            try { if (rsCek != null) rsCek.close(); } catch (SQLException e) { /* ignore */ }
+            try { if (pstId != null) pstId.close(); } catch (SQLException e) { /* ignore */ }
+            try { if (pstCek != null) pstCek.close(); } catch (SQLException e) { /* ignore */ }
+            try { if (pstDel != null) pstDel.close(); } catch (SQLException e) { /* ignore */ }
+            try { if (conn != null) conn.close(); } catch (SQLException e) { /* ignore */ }
+        }
+    }//GEN-LAST:event_jButtonHapus3ActionPerformed
 
     // ══════════════════════════════════════════════════════════
     //  DATABASE OPERATIONS
@@ -484,6 +708,8 @@ public class lapangan extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonEdit2;
+    private javax.swing.JButton jButtonHapus3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
