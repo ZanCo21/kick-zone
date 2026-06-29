@@ -21,7 +21,6 @@ public class tambah_penyewa extends javax.swing.JFrame {
     private boolean isEditMode = false;
     public tambah_penyewa() {
         initComponents();
-        initComponents();
         setTitle("Tambah Penyewa");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
