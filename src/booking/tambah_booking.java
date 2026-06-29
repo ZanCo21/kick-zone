@@ -30,6 +30,13 @@ public class tambah_booking extends javax.swing.JFrame {
         tampil_lapangan();
         tampil_penyewa();
         this.id_booking_edit = ""; 
+        jButtonCancel1.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                new booking.lihat_booking().setVisible(true);
+                dispose();
+            }
+        });
         reset_form();
     }
     
@@ -38,6 +45,13 @@ public class tambah_booking extends javax.swing.JFrame {
         tampil_lapangan();
         reset_form();
         tampil_penyewa();
+        jButtonCancel1.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                new booking.lihat_booking().setVisible(true);
+                dispose();
+            }
+        });
         
         // Kunci ID booking lama ke variabel global
         this.id_booking_edit = id_booking; 
@@ -161,6 +175,7 @@ public class tambah_booking extends javax.swing.JFrame {
         jTextFieldTotalBiaya = new javax.swing.JTextField();
         btnSimpan = new javax.swing.JButton();
         btnTambahMember = new javax.swing.JButton();
+        jButtonCancel1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -197,6 +212,9 @@ public class tambah_booking extends javax.swing.JFrame {
         btnTambahMember.setText("Data Baru");
         btnTambahMember.addActionListener(this::btnTambahMemberActionPerformed);
 
+        jButtonCancel1.setText("Cancel");
+        jButtonCancel1.addActionListener(this::jButtonCancel1ActionPerformed);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -204,10 +222,6 @@ public class tambah_booking extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(178, 178, 178)
-                .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(0, 14, Short.MAX_VALUE)
@@ -223,19 +237,25 @@ public class tambah_booking extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBoxPenyewa, 0, 190, Short.MAX_VALUE)
-                            .addComponent(jComboBoxLapangan, 0, 190, Short.MAX_VALUE)
-                            .addComponent(jDateChooserTanggal, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                            .addComponent(jTextFieldJamSelesai, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(rbDP, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(rbLunas, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextFieldTotalBiaya, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                            .addComponent(jTextFieldJamMulai))
-                        .addGap(18, 18, 18)
-                        .addComponent(btnTambahMember)))
+                                .addComponent(jButtonCancel1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jComboBoxPenyewa, 0, 190, Short.MAX_VALUE)
+                                    .addComponent(jComboBoxLapangan, 0, 190, Short.MAX_VALUE)
+                                    .addComponent(jDateChooserTanggal, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldJamSelesai, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(rbDP, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rbLunas, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextFieldTotalBiaya, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldJamMulai))
+                                .addGap(18, 18, 18)
+                                .addComponent(btnTambahMember)))))
                 .addContainerGap(180, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -277,7 +297,9 @@ public class tambah_booking extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(jTextFieldTotalBiaya, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnSimpan)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSimpan)
+                    .addComponent(jButtonCancel1))
                 .addContainerGap(274, Short.MAX_VALUE))
         );
 
@@ -308,14 +330,20 @@ public class tambah_booking extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldTotalBiayaActionPerformed
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
-    if (jDateChooserTanggal.getDate() == null || 
+        if (jDateChooserTanggal.getDate() == null || 
             jComboBoxLapangan.getSelectedItem() == null || 
-            jComboBoxPenyewa.getSelectedItem() == null || 
-            jTextFieldJamMulai.getText().trim().equals("") || 
-            jTextFieldJamSelesai.getText().trim().equals("") ||
-            jTextFieldTotalBiaya.getText().trim().equals("")) {
-            
-            JOptionPane.showMessageDialog(null, "Semua data wajib diisi!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            jComboBoxPenyewa.getSelectedItem() == null) {
+
+            JOptionPane.showMessageDialog(null, "Tanggal, Lapangan, dan Nama Tim wajib dipilih!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        String jamMulai = jTextFieldJamMulai.getText().trim();
+        String jamSelesai = jTextFieldJamSelesai.getText().trim();
+        String totalBiaya = jTextFieldTotalBiaya.getText().trim();
+
+        if (jamMulai.equals("") || jamSelesai.equals("") || totalBiaya.equals("")) {
+            JOptionPane.showMessageDialog(null, "Jam Mulai, Jam Selesai, dan Total Biaya tidak boleh kosong!", "Peringatan", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -377,10 +405,27 @@ public class tambah_booking extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSimpanActionPerformed
 
+    public void refresh_data() {
+        tampil_penyewa();
+        tampil_lapangan();
+    }
     private void btnTambahMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahMemberActionPerformed
         // TODO add your handling code here:
-        new tambah_penyewa().setVisible(true);
+        // new tambah_penyewa().setVisible(true);
+        tambah_penyewa formPenyewa = new tambah_penyewa();
+        formPenyewa.setVisible(true);
+        
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowActivated(java.awt.event.WindowEvent e) {
+                refresh_data();
+            }
+        });
     }//GEN-LAST:event_btnTambahMemberActionPerformed
+
+    private void jButtonCancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancel1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCancel1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -411,6 +456,7 @@ public class tambah_booking extends javax.swing.JFrame {
     private javax.swing.JButton btnSimpan;
     private javax.swing.JButton btnTambahMember;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jButtonCancel1;
     private javax.swing.JComboBox<String> jComboBoxLapangan;
     private javax.swing.JComboBox<String> jComboBoxPenyewa;
     private com.toedter.calendar.JDateChooser jDateChooserTanggal;

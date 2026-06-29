@@ -47,16 +47,11 @@
                   <Component id="jLabel1" min="-2" pref="197" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="178" max="-2" attributes="0"/>
-                  <Component id="btnSimpan" min="-2" pref="99" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
               <Group type="102" attributes="0">
                   <EmptySpace min="0" pref="14" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jSeparator1" min="-2" pref="462" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Component id="jLabel8" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                               <Component id="jLabel7" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
@@ -67,21 +62,30 @@
                               <Component id="jLabel3" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jComboBoxPenyewa" pref="190" max="32767" attributes="0"/>
-                              <Component id="jComboBoxLapangan" pref="190" max="32767" attributes="0"/>
-                              <Component id="jDateChooserTanggal" alignment="0" pref="190" max="32767" attributes="0"/>
-                              <Component id="jTextFieldJamSelesai" alignment="0" pref="190" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="rbDP" min="-2" pref="60" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="btnSimpan" min="-2" pref="83" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="rbLunas" min="-2" pref="77" max="-2" attributes="0"/>
+                                  <Component id="jButtonCancel1" min="-2" pref="88" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jTextFieldTotalBiaya" alignment="0" pref="190" max="32767" attributes="0"/>
-                              <Component id="jTextFieldJamMulai" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jComboBoxPenyewa" pref="190" max="32767" attributes="0"/>
+                                      <Component id="jComboBoxLapangan" pref="190" max="32767" attributes="0"/>
+                                      <Component id="jDateChooserTanggal" alignment="0" pref="190" max="32767" attributes="0"/>
+                                      <Component id="jTextFieldJamSelesai" alignment="0" pref="190" max="32767" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="rbDP" min="-2" pref="60" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="rbLunas" min="-2" pref="77" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="jTextFieldTotalBiaya" alignment="0" pref="190" max="32767" attributes="0"/>
+                                      <Component id="jTextFieldJamMulai" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="btnTambahMember" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btnTambahMember" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="180" max="32767" attributes="0"/>
@@ -135,7 +139,10 @@
                       <Component id="jTextFieldTotalBiaya" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btnSimpan" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btnSimpan" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonCancel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace pref="274" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -254,6 +261,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTambahMemberActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButtonCancel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cancel"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCancel1ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
