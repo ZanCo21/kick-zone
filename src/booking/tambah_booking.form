@@ -68,17 +68,17 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jComboBoxPenyewa" min="-2" pref="190" max="-2" attributes="0"/>
-                              <Component id="jComboBoxLapangan" min="-2" pref="190" max="-2" attributes="0"/>
-                              <Component id="jDateChooserTanggal" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
-                              <Component id="jTextFieldJamMulai" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
-                              <Component id="jTextFieldJamSelesai" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
+                              <Component id="jComboBoxPenyewa" pref="190" max="32767" attributes="0"/>
+                              <Component id="jComboBoxLapangan" pref="190" max="32767" attributes="0"/>
+                              <Component id="jDateChooserTanggal" alignment="0" pref="190" max="32767" attributes="0"/>
+                              <Component id="jTextFieldJamSelesai" alignment="0" pref="190" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="rbDP" min="-2" pref="60" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="rbLunas" min="-2" pref="77" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jTextFieldTotalBiaya" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
+                              <Component id="jTextFieldTotalBiaya" alignment="0" pref="190" max="32767" attributes="0"/>
+                              <Component id="jTextFieldJamMulai" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btnTambahMember" min="-2" max="-2" attributes="0"/>
