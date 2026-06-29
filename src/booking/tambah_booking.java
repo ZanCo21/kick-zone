@@ -85,13 +85,13 @@ public class tambah_booking extends javax.swing.JFrame {
         Connection conn = koneksi.getConnection();
         
         // Query mengambil ID dan Nama Penyewa (Nama Tim) dari database
-        String sql = "SELECT id_penyewa, nama_penyewa FROM penyewa";
+        String sql = "SELECT id_penyewa, nama_tim FROM penyewa";
         PreparedStatement pst = conn.prepareStatement(sql);
         ResultSet rs = pst.executeQuery();
         
         while (rs.next()) {
             // Menggabungkan ID dan Nama Tim agar informatif saat dipilih kasir
-            String item = rs.getString("id_penyewa") + " - " + rs.getString("nama_penyewa");
+            String item = rs.getString("id_penyewa") + " - " + rs.getString("nama_tim");
             jComboBoxPenyewa.addItem(item);
         }
     } catch (SQLException e) {
@@ -105,13 +105,13 @@ public class tambah_booking extends javax.swing.JFrame {
         Connection conn = koneksi.getConnection();
         
         // Query mengambil ID dan Jenis Lapangan dari tabel lapangan
-        String sql = "SELECT id_lapangan, jenis_lantai FROM lapangan"; 
+        String sql = "SELECT id_lapangan, jenis_lapangan FROM lapangan"; 
         PreparedStatement pst = conn.prepareStatement(sql);
         ResultSet rs = pst.executeQuery();
         
         while (rs.next()) {
             // Gabungkan ID dan Jenis Lapangan untuk ditampilkan di ComboBox
-            String item = rs.getString("id_lapangan") + " - " + rs.getString("jenis_lantai");
+            String item = rs.getString("id_lapangan") + " - " + rs.getString("jenis_lapangan");
             jComboBoxLapangan.addItem(item);
         }
     } catch (SQLException e) {

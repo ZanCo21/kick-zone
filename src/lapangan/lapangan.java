@@ -63,6 +63,14 @@ public class lapangan extends javax.swing.JFrame {
                 btnTambahActionPerformed(evt);
             }
         });
+        
+        jButtonDashboard2.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                new dashboard.dashboard().setVisible(true);
+                dispose();
+            }
+        });
 
         // Load data from database
         loadData("");
@@ -93,6 +101,7 @@ public class lapangan extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jButtonEdit2 = new javax.swing.JButton();
         jButtonHapus3 = new javax.swing.JButton();
+        jButtonDashboard2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -209,6 +218,13 @@ public class lapangan extends javax.swing.JFrame {
             }
         });
 
+        jButtonDashboard2.setText("Dashboard");
+        jButtonDashboard2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDashboard2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -226,7 +242,9 @@ public class lapangan extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
-                        .addGap(384, 384, 384)
+                        .addGap(279, 279, 279)
+                        .addComponent(jButtonDashboard2)
+                        .addGap(17, 17, 17)
                         .addComponent(jButtonHapus3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonEdit2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -243,7 +261,8 @@ public class lapangan extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButtonEdit2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonHapus3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButtonHapus3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonDashboard2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -465,6 +484,10 @@ public class lapangan extends javax.swing.JFrame {
             try { if (conn != null) conn.close(); } catch (SQLException e) { /* ignore */ }
         }
     }//GEN-LAST:event_jButtonHapus3ActionPerformed
+
+    private void jButtonDashboard2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDashboard2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonDashboard2ActionPerformed
 
     // ══════════════════════════════════════════════════════════
     //  DATABASE OPERATIONS
@@ -708,6 +731,7 @@ public class lapangan extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonDashboard2;
     private javax.swing.JButton jButtonEdit2;
     private javax.swing.JButton jButtonHapus3;
     private javax.swing.JLabel jLabel1;

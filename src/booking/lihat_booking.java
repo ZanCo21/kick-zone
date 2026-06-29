@@ -33,6 +33,14 @@ public class lihat_booking extends javax.swing.JFrame {
         model.addColumn("Mulai & Selesai");
         model.addColumn("Status Bayar");
         
+        jButtonDashboard1.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                new dashboard.dashboard().setVisible(true);
+                dispose();
+            }
+        });
+        
         tampilkan_data();
     }
     
@@ -44,7 +52,7 @@ public class lihat_booking extends javax.swing.JFrame {
             Connection conn = koneksi.getConnection();
             
             // Query JOIN agar yang muncul di tabel berupa Nama/Jenis, bukan sekadar ID angka
-            String sql = "SELECT b.id_booking, l.jenis_lantai, p.nama_penyewa, "
+            String sql = "SELECT b.id_booking, l.jenis_lapangan, p.nama_tim, "
                        + "CONCAT(b.jam_mulai, ' - ', b.jam_selesai) AS waktu, b.status_bayar "
                        + "FROM booking b "
                        + "JOIN lapangan l ON b.id_lapangan = l.id_lapangan "
@@ -58,8 +66,8 @@ public class lihat_booking extends javax.swing.JFrame {
                 // Ambil data hasil query dan masukkan ke dalam array objek row JTable
                 Object[] row = {
                     rs.getString("id_booking"),
-                    rs.getString("jenis_lantai"),
-                    rs.getString("nama_penyewa"),
+                    rs.getString("jenis_lapangan"),
+                    rs.getString("nama_tim"),
                     rs.getString("waktu"),
                     rs.getString("status_bayar")
                 };
@@ -86,6 +94,7 @@ public class lihat_booking extends javax.swing.JFrame {
         btnTambah = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblBooking = new javax.swing.JTable();
+        jButtonDashboard1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -116,6 +125,8 @@ public class lihat_booking extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblBooking);
 
+        jButtonDashboard1.setText("dashboard");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -127,7 +138,9 @@ public class lihat_booking extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(98, 98, 98)
+                                .addGap(5, 5, 5)
+                                .addComponent(jButtonDashboard1)
+                                .addGap(18, 18, 18)
                                 .addComponent(btnLaporan)
                                 .addGap(29, 29, 29)
                                 .addComponent(btnTambah))
@@ -144,7 +157,8 @@ public class lihat_booking extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(btnLaporan)
-                    .addComponent(btnTambah))
+                    .addComponent(btnTambah)
+                    .addComponent(jButtonDashboard1))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -278,6 +292,7 @@ public class lihat_booking extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLaporan;
     private javax.swing.JButton btnTambah;
+    private javax.swing.JButton jButtonDashboard1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

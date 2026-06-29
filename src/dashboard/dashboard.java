@@ -50,14 +50,16 @@ public class dashboard extends javax.swing.JFrame {
         jButtonBooking1.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JOptionPane.showMessageDialog(null, "Halaman Booking belum tersedia.", "Info", JOptionPane.INFORMATION_MESSAGE);
+                new booking.lihat_booking().setVisible(true);
+                dispose();
             }
         });
 
         jButtonPenyewa1.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JOptionPane.showMessageDialog(null, "Halaman Penyewa belum tersedia.", "Info", JOptionPane.INFORMATION_MESSAGE);
+                new penyewa.lihat_data_penyewa().setVisible(true);
+                dispose();
             }
         });
     }
@@ -317,6 +319,10 @@ public class dashboard extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonBooking1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonBooking1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonBooking1KeyPressed
 
     private void loadStatistik() {
         Connection conn = koneksi.koneksi.getConnection();
