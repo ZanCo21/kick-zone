@@ -52,7 +52,7 @@ public class lihat_booking extends javax.swing.JFrame {
             Connection conn = koneksi.getConnection();
             
             // Query JOIN agar yang muncul di tabel berupa Nama/Jenis, bukan sekadar ID angka
-            String sql = "SELECT b.id_booking, l.jenis_lapangan, p.nama_tim, "
+            String sql = "SELECT b.id_booking, l.jenis_lantai, p.nama_tim, "
                        + "CONCAT(b.jam_mulai, ' - ', b.jam_selesai) AS waktu, b.status_bayar "
                        + "FROM booking b "
                        + "JOIN lapangan l ON b.id_lapangan = l.id_lapangan "
@@ -66,7 +66,7 @@ public class lihat_booking extends javax.swing.JFrame {
                 // Ambil data hasil query dan masukkan ke dalam array objek row JTable
                 Object[] row = {
                     rs.getString("id_booking"),
-                    rs.getString("jenis_lapangan"),
+                    rs.getString("jenis_lantai"),
                     rs.getString("nama_tim"),
                     rs.getString("waktu"),
                     rs.getString("status_bayar")

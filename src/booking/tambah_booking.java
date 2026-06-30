@@ -27,8 +27,8 @@ public class tambah_booking extends javax.swing.JFrame {
     
     public tambah_booking() {
         initComponents();
-        tampil_lapangan();
         tampil_penyewa();
+        tampil_lapangan();
         this.id_booking_edit = ""; 
         jButtonCancel1.addActionListener(new java.awt.event.ActionListener() {
             @Override
@@ -42,9 +42,9 @@ public class tambah_booking extends javax.swing.JFrame {
     
     public tambah_booking(String id_booking, String id_lapangan, String id_penyewa, String tanggal, String mulai, String selesai, String total, String status) {
         initComponents();
+        tampil_penyewa();
         tampil_lapangan();
         reset_form();
-        tampil_penyewa();
         jButtonCancel1.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,13 +119,13 @@ public class tambah_booking extends javax.swing.JFrame {
         Connection conn = koneksi.getConnection();
         
         // Query mengambil ID dan Jenis Lapangan dari tabel lapangan
-        String sql = "SELECT id_lapangan, jenis_lapangan FROM lapangan"; 
+        String sql = "SELECT id_lapangan, jenis_lantai FROM lapangan"; 
         PreparedStatement pst = conn.prepareStatement(sql);
         ResultSet rs = pst.executeQuery();
         
         while (rs.next()) {
             // Gabungkan ID dan Jenis Lapangan untuk ditampilkan di ComboBox
-            String item = rs.getString("id_lapangan") + " - " + rs.getString("jenis_lapangan");
+            String item = rs.getString("id_lapangan") + " - " + rs.getString("jenis_lantai");
             jComboBoxLapangan.addItem(item);
         }
     } catch (SQLException e) {

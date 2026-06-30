@@ -10,7 +10,7 @@ import java.sql.DriverManager;
 public class koneksi {
     public static Connection getConnection() {
     try {
-        String url = "jdbc:mysql://localhost:3306/db_kick_zone";
+        String url = "jdbc:mysql://localhost:3306/db_kickzone";
         String user = "root";
         String pass = "";
         
